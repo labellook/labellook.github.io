@@ -447,10 +447,16 @@ h1.h2{ font-size:var(--t-h2); }
             color:rgba(243,233,219,.6); }
 
   /* 카드 한 규칙 — 상품·채널이 같은 옷을 입습니다 */
-  .m-plan,.ch__item{
-    display:block; width:100%; padding:18px; border-radius:5px;
+  .ch__item{
+    display:block; width:100%; padding:18px; border-radius:6px;
     border:1px solid var(--card-b); background:var(--card);
     transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  /* 홈 상품 요약은 박스가 아니라 목록입니다 — 테두리도 화살표도 없이 */
+  .m-plan{
+    display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+    width:100%; padding:15px 0; border:0; border-bottom:1px solid var(--line);
+    background:none; border-radius:0;
   }
 
   /* 홈 — 지표 → 메시지 → 상품 → 푸터 */
@@ -463,58 +469,55 @@ h1.h2{ font-size:var(--t-h2); }
   .ser{ font-size:19px; line-height:1.62; }
   .foot{ display:none; }        /* 각주 — 위 문장과 내용이 겹쳐 모바일에서는 감춥니다 */
 
-  .m-plans{ order:3; display:flex; flex-direction:column; gap:9px;
-            padding-top:26px; border-top:1px solid rgba(243,233,219,.16); }
-  .page[data-page=home] .steps{ order:4; padding-top:26px; border-top:1px solid rgba(243,233,219,.16); }
-  .m-plans .eyebrow{ margin-bottom:5px; }
-  .m-plan{ display:flex; align-items:center; gap:12px; padding:16px 16px 16px 18px; }
-  .m-plan__top{ flex:1; display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .m-plan__top b{ font-size:15.5px; font-weight:400; }
+  .m-plans{ order:3; display:flex; flex-direction:column; gap:0; padding-top:0; border:0; }
+  .page[data-page=home] .steps{ order:4; padding-top:0; border:0; }
+  .m-plans .eyebrow{ margin-bottom:10px; }
+
+  .m-plan__top{ flex:1; display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
+  .m-plan__top b{ font-size:16px; font-weight:400; }
   .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px; white-space:nowrap; color:var(--beige); }
   .m-plan__desc{ display:none; }      /* 자세한 설명은 상조상품 페이지에서 */
-  .m-plan::after{ content:''; flex:none; width:7px; height:7px; margin-right:2px;
-                  border-top:1px solid var(--fg-4); border-right:1px solid var(--fg-4);
-                  transform:rotate(45deg); }
+
 
   /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
-  .list{ display:flex; flex-direction:column; gap:26px; }
-  .list li{ display:block; padding:0; border:0; }
+  .list{ display:flex; flex-direction:column; gap:0; }
+  .list li{ display:grid; grid-template-columns:26px 1fr; column-gap:12px;
+            padding:20px 0; border:0; border-bottom:1px solid var(--line); }
+  .list li:last-child{ border-bottom:0; }
   .list li:hover{ padding-left:0; }
   .list i{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:300;
-           letter-spacing:.08em; color:var(--beige); margin-bottom:7px; }
-  .list div{ display:block; }
-  .list b{ display:block; font-size:var(--t-h3); font-weight:400; margin-bottom:5px; }
-  .list span{ font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
+           letter-spacing:.08em; color:var(--fg-4); }
+  .list i{ grid-column:1; padding-top:3px; }
+  .list div{ grid-column:2; display:block; }
+  .list b{ display:block; font-size:18px; font-weight:400; letter-spacing:-.01em; margin-bottom:5px; }
+  .list span{ display:block; font-size:var(--t-sm); line-height:1.8; color:var(--fg-3); }
 
   /* 상품 — 사진과 글을 한 덩어리로 */
   .plans-wrap{ display:flex; flex-direction:column; gap:32px; }
-  .plan{ display:block; padding:0; border:0; background:none; }
-  .plan:first-of-type{ padding:0; border:0; }
-  .plan__img{ width:100%; height:156px; margin-bottom:14px; border-radius:5px;
-              filter:saturate(.92) contrast(1.06) brightness(.95); }
-  .plan__txt{ display:block; }
-  .plan__txt .eyebrow{ display:block; margin-bottom:8px; }
-  .plan__txt b{ display:block; font-size:19px; font-weight:400; margin-bottom:7px; }
+  /* 상품마다 하나의 면 — 사진이 화면을 지배하지 않게 높이를 줄입니다 */
+  .plan{ display:block; padding:0 0 20px; border:0; border-radius:6px;
+         background:var(--card); overflow:hidden; }
+  .plan:first-of-type{ padding:0 0 20px; border:0; }
+  .plans-wrap{ display:flex; flex-direction:column; gap:14px; }
+  .plan__img{ width:100%; height:118px; margin-bottom:16px; border-radius:0;
+              filter:saturate(.9) contrast(1.05) brightness(.92); }
+  .plan__txt{ display:block; padding:0 18px; }
+  .plan__txt .eyebrow{ display:none; }        /* '기본형'은 이름에 이미 들어 있습니다 */
+  .plan__txt b{ display:block; font-size:20px; font-weight:400;
+                letter-spacing:-.012em; margin-bottom:8px; }
   .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
-  .plan__spec{ margin-top:5px; font-size:12px; line-height:1.8; }
+  .plan__spec{ margin-top:14px; font-size:12.5px; line-height:1.8; color:var(--fg-4); }
   .plan__price{ display:block; margin-top:16px; padding-top:16px;
                 border-top:1px solid var(--line);
                 font-size:29px; letter-spacing:.01em; }
 
   /* 절차 — 2열로 접습니다. 세로로 6줄 세우면 화면을 너무 잡아먹습니다 */
   .steps{ display:flex; flex-direction:column; gap:15px; padding:0; border:0; }
-  .steps ol{ display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
-  .steps li{ display:flex; align-items:center; gap:9px; padding:11px 0; border:0;
-             border-bottom:1px solid rgba(243,233,219,.12); }
-  .steps li:nth-last-child(-n+2){ border-bottom:0; }
-  .steps i{
-    flex:none; display:flex; align-items:center; justify-content:center;
-    width:21px; height:21px; border-radius:50%;
-    border:1px solid rgba(243,233,219,.26); background:var(--bg);
-    font-size:9px; font-weight:300; letter-spacing:.04em; color:var(--fg-4);
-  }
-  .steps li:first-child i,
-  .steps li:last-child i{ border-color:var(--beige); color:var(--beige); }
+  .steps ol{ display:grid; grid-template-columns:1fr 1fr; gap:13px 14px; }
+  .steps li{ display:flex; align-items:baseline; gap:9px; padding:0; border:0; }
+  .steps i{ flex:none; font-style:normal; font-family:var(--serif);
+            font-size:12px; font-weight:400; color:var(--fg-4); }
+
   .steps span{ font-size:12.5px; font-weight:300; line-height:1.45; color:var(--fg-2); }
 
   /* 문의 — 채널 */
@@ -541,7 +544,7 @@ h1.h2{ font-size:var(--t-h2); }
   }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
-    height:54px; border-radius:7px;
+    height:54px; border-radius:6px;
     background:#2A2118;                       /* 면이 있어야 버튼으로 읽힙니다 */
     border:0;
     box-shadow:0 1px 14px rgba(22,16,11,.5);
