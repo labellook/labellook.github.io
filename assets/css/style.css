@@ -183,6 +183,11 @@ h1.h2{ font-size:var(--t-h2); }
 .steps i{ font-style:normal; font-size:var(--t-xs); color:var(--fg-4); }
 .steps span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-2); }
 
+/* 상품 구성 — 실제로 무엇이 들어가는지 */
+.plan__spec{ display:block; font-size:var(--t-sm); font-weight:200; line-height:1.8; color:var(--fg-3); }
+.plan__spec i{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:300;
+               letter-spacing:.16em; color:var(--fg-4); margin-bottom:5px; }
+
 .ch{ display:flex; flex-direction:column; gap:var(--s2); }
 .ch__item{ display:flex; align-items:center; gap:20px; padding:18px 24px;
            border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.05);
@@ -213,7 +218,9 @@ h1.h2{ font-size:var(--t-h2); }
   .page[data-page=home] .lead   { margin-top:18px; }
   .page[data-page=home] .block  { order:1; margin-top:46px; max-width:560px; }
   .page[data-page=home] .actions{ order:2; margin-top:30px; }
-  .page[data-page=home] .stats  { order:3; margin-top:58px; }
+  .page[data-page=home] .stats  { order:3; margin-top:44px; }
+  .page[data-page=home] .steps  { order:4; margin-top:34px; padding-top:22px;
+                                  gap:14px; border-top:1px solid var(--line); }
 
   .page[data-page=home] .block .ser{ font-size:21px; line-height:1.62; color:rgba(255,255,255,.94); }
 
@@ -244,7 +251,7 @@ h1.h2{ font-size:var(--t-h2); }
     transition:border-color .35s var(--ease), background .35s var(--ease), transform .35s var(--ease);
   }
   .plan:hover{ border-color:var(--line-2); background:rgba(255,255,255,.06); transform:translateY(-3px); }
-  .plan__img{ display:block; width:100%; height:clamp(92px,17vh,150px); }
+  .plan__img{ display:block; width:100%; height:clamp(84px,14vh,128px); }
   .plan__img img{ transition:transform .7s var(--ease); }
   .plan:hover .plan__img img{ transform:scale(1.04); }
 
@@ -256,11 +263,13 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__price{ margin-top:2px; padding-top:clamp(8px,1.3vh,11px);
                 border-top:1px solid var(--line); font-size:clamp(19px,2.6vh,23px); }
 
-  /* 절차는 닫힌 표로 */
-  .steps{ margin-top:clamp(22px,4.4vh,40px); padding-top:clamp(15px,2.6vh,24px);
-          gap:clamp(11px,1.8vh,16px); border-top:1px solid var(--line-2); }
-  .steps ol{ grid-template-columns:repeat(3,1fr); gap:0 28px; }
-  .steps li{ padding:clamp(7px,1.2vh,11px) 0; border-bottom:1px solid var(--line); }
+  /* 절차는 3열 2행 표 (홈 하단) */
+  .steps ol{ grid-template-columns:repeat(3,1fr); gap:0 26px; }
+  .steps li{ padding:clamp(7px,1.2vh,10px) 0; border-bottom:1px solid var(--line); }
+
+  /* 상품 카드 — 구성이 들어가 길어졌으니 사진을 조금 낮춥니다 */
+  .plan__spec{ font-size:12px; line-height:1.75; }
+  .plan__spec i{ margin-bottom:4px; }
 }
 
 /* 낮은 화면(노트북 뷰포트 ~660~800px)에서도 한 화면에 들어오도록 더 조입니다 */
@@ -273,9 +282,10 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__txt b{ font-size:16.5px; }
   .plan__txt .note{ font-size:11.5px; line-height:1.65; }
   .plan__price{ font-size:18.5px; padding-top:8px; margin-top:0; }
-  .steps{ margin-top:20px; padding-top:14px; gap:10px; }
+  .page[data-page=home] .steps{ margin-top:18px; padding-top:12px; gap:9px; }
   .steps li{ padding:5px 0; }
   .steps span{ font-size:12.5px; }
+  .plan__spec{ font-size:11.5px; line-height:1.65; }
 
   /* 회사소개 — 값 4개를 2열로 접습니다 (세로로 쌓으면 낮은 화면을 넘깁니다) */
   .page[data-page=about] h1{ font-size:clamp(22px,3.2vh,28px); }
@@ -286,12 +296,13 @@ h1.h2{ font-size:var(--t-h2); }
   .list b{ font-size:17px; }
   .list span{ font-size:12.5px; line-height:1.72; }
 
-  /* 홈 — 블록 사이 간격을 줄입니다 */
-  .page[data-page=home] h1{ font-size:clamp(26px,4vh,38px); }
-  .page[data-page=home] .lead{ margin-top:13px; }
-  .page[data-page=home] .block{ margin-top:30px; }
-  .page[data-page=home] .actions{ margin-top:22px; }
-  .page[data-page=home] .stats{ margin-top:36px; }
+  /* 홈 — 절차까지 들어왔으므로 블록 사이를 더 조입니다 */
+  .page[data-page=home] h1{ font-size:clamp(23px,3.8vh,38px); }
+  .page[data-page=home] .lead{ margin-top:12px; }
+  .page[data-page=home] .block{ margin-top:22px; }
+  .page[data-page=home] .block .ser{ font-size:19px; }
+  .page[data-page=home] .actions{ margin-top:17px; }
+  .page[data-page=home] .stats{ margin-top:26px; }
 
   /* 상담·문의 — 채널 카드를 조입니다 */
   .page[data-page=contact] h1{ font-size:clamp(22px,3.2vh,28px); }
@@ -445,6 +456,7 @@ h1.h2{ font-size:var(--t-h2); }
   .foot{ font-size:12px; line-height:1.8; color:var(--fg-4); }
 
   .m-plans{ order:3; display:flex; flex-direction:column; gap:10px; }
+  .page[data-page=home] .steps{ order:4; padding-top:26px; border-top:1px solid rgba(255,255,255,.16); }
   .m-plans .eyebrow{ margin-bottom:4px; }
   .m-plan__top{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
   .m-plan__top b{ font-size:16px; font-weight:400; }
@@ -501,7 +513,7 @@ h1.h2{ font-size:var(--t-h2); }
   .ch__item small{ font-size:11.5px; color:var(--fg-4); margin-top:2px; }
 
   /* ── 푸터 — 본문에서 떼어냅니다 ── */
-  .m-info{ order:4;                     /* 홈에서 지표·메시지·상품 다음에 옵니다 */
+  .m-info{ order:5;                     /* 홈에서 맨 마지막 (지표·메시지·상품·절차 다음) */
            display:block; margin-top:8px; padding-top:26px;
            border-top:1px solid rgba(255,255,255,.14); }
   .m-info .eyebrow{ display:block; margin-bottom:10px; }

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var TEL = '031-912-4444';
+  var TEL = '050-6472-6618';
   var PAGES = ['home', 'about', 'product', 'contact'];
 
   // 탭마다 어떤 배경을 쓸지 — 사진 4장을 탭 4개에 하나씩 배정합니다.
