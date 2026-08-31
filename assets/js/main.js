@@ -81,11 +81,9 @@
   show(location.hash.slice(1) || 'home');
 
   /* ── 4. 문자 링크 — 상담 요청 양식을 미리 채워 보냅니다 ── */
-  var sms = $('#smsLink');
-  if (sms) {
-    var body = '[대화상조 상담 요청]\n성함: \n연락처: \n내용: ';
-    // iOS는 ?&body=, 그 외는 ?body=
-    var sep = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) ? '&' : '';
-    sms.setAttribute('href', 'sms:' + TEL + '?' + sep + 'body=' + encodeURIComponent(body));
-  }
+  var body = '[대화상조 상담 요청]\n성함: \n연락처: \n내용: ';
+  // iOS는 ?&body=, 그 외는 ?body=
+  var sep = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) ? '&' : '';
+  var href = 'sms:' + TEL + '?' + sep + 'body=' + encodeURIComponent(body);
+  $$('a[href^="sms:"]').forEach(function (a) { a.setAttribute('href', href); });
 })();

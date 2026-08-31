@@ -527,18 +527,20 @@ h1.h2{ font-size:var(--t-h2); }
   /* ── 하단 고정 바 ── */
   .mfoot{
     position:fixed; left:0; right:0; bottom:0; z-index:15;
-    display:flex; gap:8px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:7px;
     padding:13px var(--gut) calc(15px + env(safe-area-inset-bottom));
     background:linear-gradient(180deg,rgba(15,18,20,0) 0%,rgba(15,18,20,.92) 38%,#0F1214 100%);
     animation:fadeIn 1.2s .6s ease both;
   }
-  .mfoot__tel{ flex:1; display:flex; align-items:center; justify-content:center; gap:10px;
-               height:52px; border-radius:5px; background:#fff; color:#111; }
-  .mfoot__tel span{ font-size:11px; font-weight:300; letter-spacing:.1em; color:rgba(17,17,17,.6); }
-  .mfoot__tel b{ font-family:var(--serif); font-size:17.5px; font-weight:400; letter-spacing:.01em; }
-  .mfoot__kko{ flex:none; display:flex; align-items:center; justify-content:center;
-               width:92px; height:52px; border-radius:5px; border:1px solid rgba(255,255,255,.38);
-               font-size:12.5px; font-weight:300; }
+  .mfoot__btn{
+    display:flex; align-items:center; justify-content:center;
+    height:52px; border-radius:5px; border:1px solid rgba(255,255,255,.34);
+    font-size:13.5px; font-weight:300; letter-spacing:.01em; color:var(--fg);
+    transition:background .25s var(--ease), border-color .25s var(--ease);
+  }
+  .mfoot__btn:active{ background:rgba(255,255,255,.1); }
+  .mfoot__btn--fill{ background:#fff; border-color:#fff; color:#111; font-weight:400; }
+  .mfoot__btn--fill:active{ background:#DDE1E3; }
 
   /* ── 메뉴 시트 ── */
   .sheet{
@@ -563,7 +565,7 @@ h1.h2{ font-size:var(--t-h2); }
 @media (max-width:360px){
   :root{ --gut:18px; --t-h1:27px; --t-h2:27px; }
   .page[data-page=home] .phead h1{ font-size:28px; }
-  .mfoot__tel b{ font-size:16px; }
-  .mfoot__kko{ width:82px; }
+  .mfoot{ gap:6px; }
+  .mfoot__btn{ font-size:12.5px; }
   .stats{ gap:10px; }
 }
