@@ -50,12 +50,18 @@
     if (location.hash.slice(1) !== page) history.replaceState(null, '', '#' + page);
   }
 
-  /* ── 3. 모바일 메뉴 ── */
+  /* ── 3. 모바일 상단 바 — 스크롤하면 배경이 생깁니다 ── */
+  var mtop = $('.mtop');
+  function onScroll() { mtop.classList.toggle('is-stuck', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── 4. 모바일 메뉴 ── */
   function openSheet() {
     sheet.hidden = false;
     document.body.classList.add('is-locked');
     menuBtn.setAttribute('aria-expanded', 'true');
-    $('#sheetClose').focus();
+    sheet.focus({ preventScroll: true });
   }
   function closeSheet() {
     sheet.hidden = true;
@@ -80,7 +86,7 @@
   window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
   show(location.hash.slice(1) || 'home');
 
-  /* ── 4. 문자 링크 — 상담 요청 양식을 미리 채워 보냅니다 ── */
+  /* ── 5. 문자 링크 — 상담 요청 양식을 미리 채워 보냅니다 ── */
   var body = '[대화상조 상담 요청]\n성함: \n연락처: \n내용: ';
   // iOS는 ?&body=, 그 외는 ?body=
   var sep = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) ? '&' : '';
