@@ -533,13 +533,18 @@ h1.h2{ font-size:var(--t-h2); }
     animation:fadeIn 1.2s .6s ease both;
   }
   .mfoot__btn{
-    display:flex; align-items:center; justify-content:center;
-    height:52px; border-radius:5px; border:1px solid rgba(255,255,255,.34);
-    font-size:13.5px; font-weight:300; letter-spacing:.01em; color:var(--fg);
-    transition:background .25s var(--ease), border-color .25s var(--ease);
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    height:54px; border-radius:7px;
+    background:#252B2E;                       /* 면이 있어야 버튼으로 읽힙니다 */
+    border:1px solid rgba(255,255,255,.13);
+    box-shadow:0 2px 10px rgba(0,0,0,.4);
+    font-size:14px; font-weight:400; letter-spacing:.01em; color:var(--fg);
+    transition:background .2s var(--ease), transform .2s var(--ease);
   }
-  .mfoot__btn:active{ background:rgba(255,255,255,.1); }
-  .mfoot__btn--fill{ background:#fff; border-color:#fff; color:#111; font-weight:400; }
+  .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.85; }
+  .mfoot__btn:active{ background:#30373A; transform:translateY(1px); }
+  .mfoot__btn--fill{ background:#fff; border-color:#fff; color:#111; font-weight:500; }
+  .mfoot__btn--fill svg{ opacity:1; }
   .mfoot__btn--fill:active{ background:#DDE1E3; }
 
   /* ── 메뉴 시트 ── */
@@ -566,6 +571,7 @@ h1.h2{ font-size:var(--t-h2); }
   :root{ --gut:18px; --t-h1:27px; --t-h2:27px; }
   .page[data-page=home] .phead h1{ font-size:28px; }
   .mfoot{ gap:6px; }
-  .mfoot__btn{ font-size:12.5px; }
+  .mfoot__btn{ font-size:12.5px; gap:5px; }
+  .mfoot__btn svg{ width:12px; height:12px; }
   .stats{ gap:10px; }
 }
