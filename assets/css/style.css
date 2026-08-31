@@ -15,8 +15,8 @@
   --fg-3:    rgba(243,233,219,.62);
   --fg-4:    rgba(243,233,219,.47);
 
-  --line:    rgba(243,233,219,.16);
-  --line-2:  rgba(243,233,219,.26);
+  --line:    rgba(243,233,219,.11);
+  --line-2:  rgba(243,233,219,.18);
 
   --beige:   #E3D3B6;               /* 강조 — 채워진 버튼·가격 */
   --beige-d: #CFBB99;
@@ -69,7 +69,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .stage__bg img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
   object-position:38% 50%;                    /* 좌측 패널에 피사체가 오도록 */
-  filter:sepia(.34) saturate(.9) contrast(1.04) brightness(.84);
+  filter:sepia(.16) saturate(.88) contrast(1.12) brightness(.8);
   opacity:0; transition:opacity .9s ease, object-position 1.4s var(--ease);
 }
 /* 탭을 옮기면 배경도 함께 바뀝니다 — 사진 4장이 탭 4개에 하나씩 붙습니다.
@@ -141,12 +141,12 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 
 /* ── 페이지 공통 ── */
 h1{ font-family:var(--serif); font-size:var(--t-h1); font-weight:400;
-    line-height:1.44; letter-spacing:-.01em; text-wrap:pretty; }
+    line-height:1.4; letter-spacing:-.018em; text-wrap:pretty; }
 h1.h2{ font-size:var(--t-h2); }
 .ser{ font-family:var(--serif); font-size:var(--t-h3); font-weight:400; line-height:1.6; text-wrap:pretty; }
 .lead{ font-size:var(--t-md); color:var(--fg-2); line-height:2; text-wrap:pretty; }
 .note{ font-size:var(--t-sm); color:var(--fg-3); line-height:1.9; }
-.eyebrow{ font-size:var(--t-xs); font-weight:200; letter-spacing:.16em; color:var(--fg-4); }
+.eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.06em; color:var(--fg-3); }
 .rule{ height:1px; background:var(--line-2); transform-origin:left; animation:line 1s .2s var(--ease) both; }
 .block{ display:flex; flex-direction:column; gap:var(--s2); }
 
@@ -178,7 +178,7 @@ h1.h2{ font-size:var(--t-h2); }
 
 .plan{ display:flex; gap:var(--s4); align-items:flex-start; padding-top:20px; border-top:1px solid var(--line); }
 .plan:first-of-type{ border-top:0; padding-top:0; }
-.plan__img{ flex:none; width:164px; height:112px; overflow:hidden; filter:sepia(.12) saturate(.95) brightness(.97); }
+.plan__img{ flex:none; width:164px; height:112px; overflow:hidden; filter:saturate(.92) contrast(1.06) brightness(.95); }
 .plan__img img{ width:100%; height:100%; object-fit:cover; }
 .plan__txt{ display:flex; flex-direction:column; gap:var(--s1); min-width:0; }
 .plan__txt b{ font-size:var(--t-h3); font-weight:400; }
@@ -194,7 +194,7 @@ h1.h2{ font-size:var(--t-h2); }
 /* 상품 구성 — 실제로 무엇이 들어가는지 */
 .plan__spec{ display:block; font-size:var(--t-sm); font-weight:200; line-height:1.8; color:var(--fg-3); }
 .plan__spec i{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:300;
-               letter-spacing:.16em; color:var(--fg-4); margin-bottom:5px; }
+               letter-spacing:.06em; color:var(--fg-3); margin-bottom:5px; }
 
 .ch{ display:flex; flex-direction:column; gap:var(--s2); }
 .ch__item{ display:flex; align-items:center; gap:20px; padding:18px 24px;
@@ -340,7 +340,7 @@ h1.h2{ font-size:var(--t-h2); }
   :root{
     --gut:22px;
     --m-hero:200px;        /* 하위 페이지 사진 띠 높이 */
-    --m-bar:90px;          /* 하단 고정 바가 차지하는 높이 */
+    --m-bar:104px;         /* 하단 고정 바(80px) + 여유 */
 
     --t-h1:30px;           /* 페이지 제목 */
     --t-h2:30px;
@@ -394,7 +394,7 @@ h1.h2{ font-size:var(--t-h2); }
   .phead::before{                       /* 사진은 상단 띠에만, 또렷하게 */
     content:''; position:absolute; top:0; left:0; right:0; height:var(--m-hero);
     background-size:cover; background-position:50% 50%;
-    filter:sepia(.32) saturate(.9) contrast(1.04) brightness(.88);
+    filter:sepia(.16) saturate(.88) contrast(1.12) brightness(.84);
   }
   .phead::after{                        /* 상단 바가 얹히는 위쪽을 한 번 더 눌러줍니다 */
     content:''; position:absolute; top:0; left:0; right:0; height:var(--m-hero);
@@ -410,7 +410,7 @@ h1.h2{ font-size:var(--t-h2); }
   .page[data-page=product] .phead::before{ background-image:url(../img/ph-candle.jpg);  background-position:58% 44%; }
   .page[data-page=contact] .phead::before{ background-image:url(../img/ph-tribute.jpg);
                                           background-position:44% 46%;
-                                          filter:sepia(.32) saturate(.9) contrast(1.04) brightness(.7); }
+                                          filter:sepia(.16) saturate(.88) contrast(1.12) brightness(.68); }
 
   /* ── 홈: 사진 히어로 위에 메시지 ── */
   .page[data-page=home] .phead{
@@ -420,30 +420,31 @@ h1.h2{ font-size:var(--t-h2); }
   .page[data-page=home] .phead::before{
     inset:0; height:auto; background-image:url(../img/ph-mourners.jpg);
     background-position:52% 46%;
-    filter:sepia(.34) saturate(.9) contrast(1.04) brightness(.7);
+    filter:sepia(.16) saturate(.88) contrast(1.12) brightness(.68);
     animation:drift 40s linear infinite alternate;
   }
   .page[data-page=home] .phead::after{
     inset:0; height:auto;
-    background:linear-gradient(180deg,rgba(22,16,11,.68) 0%,rgba(22,16,11,.3) 15%,rgba(22,16,11,.12) 32%,
-               rgba(22,16,11,.6) 66%,rgba(22,16,11,.94) 100%);
+    background:linear-gradient(180deg,rgba(22,16,11,.64) 0%,rgba(22,16,11,.24) 22%,
+               rgba(22,16,11,.4) 54%,rgba(22,16,11,.82) 84%,var(--bg) 100%);
   }
-  .page[data-page=home] .phead h1{ font-size:32px; line-height:1.44; text-shadow:0 2px 24px rgba(0,0,0,.5); }
+  .page[data-page=home] .phead h1{ font-size:33px; line-height:1.36; letter-spacing:-.022em;
+                                   text-shadow:0 2px 30px rgba(22,16,11,.6); }
   .page[data-page=home] .phead .lead{ margin-top:0; max-width:300px; color:rgba(243,233,219,.8); }
   .tagline{ display:flex; align-items:center; gap:11px; font-size:10.5px; font-weight:300;
-            letter-spacing:.2em; color:var(--fg); }
+            letter-spacing:.1em; color:var(--fg); }
   .tagline i{ display:block; width:24px; height:1px; background:var(--beige); flex:none; }
 
   /* ── 본문 ─────────────────────────────────────── */
   .pbody{
-    display:flex; flex-direction:column; gap:34px;
-    padding:40px var(--gut) calc(var(--m-bar) + env(safe-area-inset-bottom));
+    display:flex; flex-direction:column; gap:42px;
+    padding:44px var(--gut) calc(var(--m-bar) + env(safe-area-inset-bottom));
   }
   .rule,.actions{ display:none; }
 
   /* 섹션 라벨 — 본문과 확실히 구분되게 */
-  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.13em;
-            color:rgba(243,233,219,.52); }
+  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.06em;
+            color:rgba(243,233,219,.6); }
 
   /* 카드 한 규칙 — 상품·채널이 같은 옷을 입습니다 */
   .m-plan,.ch__item{
@@ -454,7 +455,7 @@ h1.h2{ font-size:var(--t-h2); }
 
   /* 홈 — 지표 → 메시지 → 상품 → 푸터 */
   .stats{ order:1; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-  .stats li{ gap:5px; padding-top:13px; border-top:1px solid rgba(243,233,219,.24); }
+  .stats li{ gap:5px; padding-top:13px; border-top:1px solid rgba(243,233,219,.2); }
   .stats b{ font-family:var(--serif); font-size:17px; }
   .stats span{ font-size:10.5px; line-height:1.5; color:var(--fg-4); }
 
@@ -476,11 +477,11 @@ h1.h2{ font-size:var(--t-h2); }
                   transform:rotate(45deg); }
 
   /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
-  .list{ display:flex; flex-direction:column; gap:21px; }
+  .list{ display:flex; flex-direction:column; gap:26px; }
   .list li{ display:block; padding:0; border:0; }
   .list li:hover{ padding-left:0; }
   .list i{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:300;
-           letter-spacing:.2em; color:rgba(243,233,219,.45); margin-bottom:7px; }
+           letter-spacing:.08em; color:var(--beige); margin-bottom:7px; }
   .list div{ display:block; }
   .list b{ display:block; font-size:var(--t-h3); font-weight:400; margin-bottom:5px; }
   .list span{ font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
@@ -490,15 +491,15 @@ h1.h2{ font-size:var(--t-h2); }
   .plan{ display:block; padding:0; border:0; background:none; }
   .plan:first-of-type{ padding:0; border:0; }
   .plan__img{ width:100%; height:156px; margin-bottom:14px; border-radius:5px;
-              filter:sepia(.12) saturate(.95) brightness(.97); }
+              filter:saturate(.92) contrast(1.06) brightness(.95); }
   .plan__txt{ display:block; }
   .plan__txt .eyebrow{ display:block; margin-bottom:8px; }
   .plan__txt b{ display:block; font-size:19px; font-weight:400; margin-bottom:7px; }
   .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
   .plan__spec{ margin-top:5px; font-size:12px; line-height:1.8; }
-  .plan__price{ display:block; margin-top:12px; padding-top:12px;
-                border-top:1px solid rgba(243,233,219,.14);
-                font-size:25px; }
+  .plan__price{ display:block; margin-top:16px; padding-top:16px;
+                border-top:1px solid var(--line);
+                font-size:29px; letter-spacing:.01em; }
 
   /* 절차 — 2열로 접습니다. 세로로 6줄 세우면 화면을 너무 잡아먹습니다 */
   .steps{ display:flex; flex-direction:column; gap:15px; padding:0; border:0; }
@@ -542,15 +543,15 @@ h1.h2{ font-size:var(--t-h2); }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
     height:54px; border-radius:7px;
-    background:#2C2219;                       /* 면이 있어야 버튼으로 읽힙니다 */
-    border:1px solid rgba(243,233,219,.13);
-    box-shadow:0 2px 10px rgba(0,0,0,.4);
+    background:#2A2118;                       /* 면이 있어야 버튼으로 읽힙니다 */
+    border:0;
+    box-shadow:0 1px 14px rgba(22,16,11,.5);
     font-size:14px; font-weight:400; letter-spacing:.01em; color:var(--fg);
     transition:background .2s var(--ease), transform .2s var(--ease);
   }
   .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.85; }
   .mfoot__btn:active{ background:#3A2E21; transform:translateY(1px); }
-  .mfoot__btn--fill{ background:var(--beige); border-color:var(--beige); color:var(--on-beige); font-weight:500; }
+  .mfoot__btn--fill{ background:var(--beige); color:var(--on-beige); font-weight:500; }
   .mfoot__btn--fill svg{ opacity:1; }
   .mfoot__btn--fill:active{ background:var(--beige-d); }
 
