@@ -437,7 +437,7 @@ h1.h2{ font-size:var(--t-h2); }
 
   /* ── 본문 ─────────────────────────────────────── */
   .pbody{
-    display:flex; flex-direction:column; gap:42px;
+    display:flex; flex-direction:column; gap:38px;
     padding:44px var(--gut) calc(var(--m-bar) + env(safe-area-inset-bottom));
   }
   .rule,.actions{ display:none; }
@@ -519,7 +519,7 @@ h1.h2{ font-size:var(--t-h2); }
 
   /* 문의 — 채널 */
   .ch{ display:flex; flex-direction:column; gap:10px; }
-  .ch__item{ display:flex; align-items:center; gap:16px; }
+  .ch__item{ display:flex; align-items:center; gap:16px; padding:14px 18px; }
   .ch__item svg{ width:20px; height:20px; }
   .ch__item b{ font-size:16px; }
   .ch__item b.tel{ font-size:21px; }
@@ -527,7 +527,7 @@ h1.h2{ font-size:var(--t-h2); }
 
   /* ── 푸터 — 본문에서 떼어냅니다 ── */
   .m-info{ order:5;                     /* 홈에서 맨 마지막 (지표·메시지·상품·절차 다음) */
-           display:block; margin-top:8px; padding-top:26px;
+           display:block; margin-top:0; padding-top:18px;
            border-top:1px solid rgba(243,233,219,.14); }
   .m-info .eyebrow{ display:none; }   /* 한 줄 푸터에 라벨은 과합니다 */
   .m-info p{ font-size:12px; font-weight:200; line-height:2.1; color:var(--fg-4); }
@@ -538,7 +538,6 @@ h1.h2{ font-size:var(--t-h2); }
     display:grid; grid-template-columns:repeat(3,1fr); gap:7px;
     padding:13px var(--gut) calc(15px + env(safe-area-inset-bottom));
     background:linear-gradient(180deg,rgba(23,18,14,0) 0%,rgba(23,18,14,.92) 38%,var(--bg) 100%);
-    animation:fadeIn 1.2s .6s ease both;
   }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
