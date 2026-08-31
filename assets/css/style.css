@@ -1,0 +1,549 @@
+@import url("../fonts/fonts.css");
+
+/* ============================================================
+   대화상조
+   데스크톱 — 좌우 분할 + 사선 패널 (데스크톱 시안 그대로)
+   모바일   — 화면별 사진 히어로 + 하단 전화/카톡 바 (모바일 시안 그대로)
+   ============================================================ */
+:root{
+  --bg:      #0F1214;
+  --bg-2:    #14181A;
+  --panel:   rgba(6,8,9,.74);
+
+  --fg:      #FFFFFF;
+  --fg-2:    rgba(255,255,255,.74);
+  --fg-3:    rgba(255,255,255,.56);
+  --fg-4:    rgba(255,255,255,.40);
+
+  --line:    rgba(255,255,255,.14);
+  --line-2:  rgba(255,255,255,.26);
+
+  --serif: 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
+  --sans:  'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+
+  --t-h1:  clamp(28px, 2.9vw, 42px);
+  --t-h2:  clamp(24px, 2.5vw, 32px);
+  --t-h3:  clamp(18px, 1.55vw, 22px);
+  --t-lg:  clamp(16px, 1.35vw, 19px);
+  --t-md:  clamp(13.5px, 1.05vw, 15px);
+  --t-sm:  clamp(12px, .93vw, 13px);
+  --t-xs:  clamp(10.5px, .8vw, 11.5px);
+
+  --s1:6px; --s2:10px; --s3:16px; --s4:24px; --s5:32px; --s6:44px;
+  --gut: clamp(22px, 3vw, 44px);
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:var(--t-md); font-weight:200; line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  word-break:keep-all; overflow-wrap:break-word;
+}
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,p,ol,ul{ margin:0; padding:0; }
+li{ list-style:none; }
+button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer;
+        -webkit-appearance:none; appearance:none; text-align:left; }
+[hidden]{ display:none !important; }
+
+/* 모바일/데스크톱 전용 조각 */
+.only-m,.tagline,.m-plans,.m-info,.mtop,.mfoot,.sheet{ display:none; }
+
+/* ── 무대 ───────────────────────────────────────── */
+.stage{ position:relative; height:100vh; min-height:600px; overflow:hidden; background:var(--bg); }
+
+.stage__bg,.stage__drift{ position:absolute; inset:0; }
+.stage__drift{ animation:drift 40s linear infinite alternate; }
+.stage__bg img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:38% 50%;                    /* 좌측 패널에 피사체가 오도록 */
+  filter:saturate(.5) contrast(1.05) brightness(.9);
+  opacity:0; transition:opacity .9s ease, object-position 1.4s var(--ease);
+}
+/* 탭을 옮기면 배경도 함께 바뀝니다 — 사진 4장이 탭 4개에 하나씩 붙습니다.
+   좌측 39%만 보이므로 사진마다 보일 부분을 따로 잡습니다. */
+.stage__bg img[data-bg="0"]{ object-position:44% 46%; }   /* 조문객 — 홈 */
+.stage__bg img[data-bg="1"]{ object-position:34% 52%; }   /* 촛불·칼라 — 상조상품 */
+.stage__bg img[data-bg="2"]{ object-position:46% 54%; }   /* 장미·촛불 — 회사소개 */
+.stage__bg img[data-bg="3"]{ object-position:40% 50%; }   /* 장미 헌화 — 상담·문의 */
+.stage__bg img.is-on{ opacity:1; }
+
+.scrim{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(120% 78% at 0% 100%, rgba(8,10,11,.66) 0%, rgba(8,10,11,0) 62%),
+    linear-gradient(180deg,rgba(8,10,11,.45) 0%,rgba(8,10,11,.12) 45%,rgba(8,10,11,.5) 100%);
+}
+.panel{
+  position:absolute; top:0; right:0; bottom:0; width:61%;
+  background:var(--panel); backdrop-filter:blur(2px);
+  clip-path:polygon(156px 0, 100% 0, 100% 100%, 0 100%);
+  pointer-events:none; animation:fadeIn 1.2s ease both;
+}
+
+.layout{
+  position:relative; height:100%; display:flex; flex-direction:column;
+  justify-content:space-between; padding:clamp(24px,3.4vh,42px) 0 clamp(18px,2.6vh,28px);
+}
+.row{ display:flex; }
+.col-l{ width:40%; padding-inline:var(--gut); }
+.col-r{ width:60%; padding:0 clamp(32px,5vw,72px) 0 clamp(150px,13.9vw,200px); }
+
+/* ── 상단 ───────────────────────────────────────── */
+.row--top{ animation:up .8s var(--ease) both; }
+.brand{ display:flex; align-items:center; gap:18px; }
+.brand__mark{ width:clamp(26px,2.5vw,36px); height:auto; flex:none; color:#fff; }
+.brand__txt b{ display:block; font-family:var(--serif); font-size:clamp(23px,2.2vw,32px);
+               font-weight:700; letter-spacing:.03em; line-height:1; }
+.brand__txt em{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:200;
+                letter-spacing:.08em; color:var(--fg-3); margin-top:5px; }
+
+.nav{ display:flex; justify-content:flex-end; gap:clamp(22px,3vw,44px); width:100%; }
+.nav button{ display:flex; flex-direction:column; gap:10px; font-size:clamp(13px,1.1vw,15.5px);
+             font-weight:300; color:var(--fg-3); transition:color .3s var(--ease); }
+.nav button i{ display:block; height:1px; background:var(--fg); transform:scaleX(0);
+               transform-origin:left; transition:transform .4s var(--ease); }
+.nav button:hover,.nav button.is-active{ color:var(--fg); }
+.nav button.is-active i{ transform:scaleX(1); }
+
+/* ── 중단 ───────────────────────────────────────── */
+.row--main{ flex:1; min-height:0; }
+
+.aside{
+  display:flex; flex-direction:column; justify-content:flex-end; gap:var(--s2);
+  padding-bottom:var(--s4); animation:up 1s .45s var(--ease) both;
+}
+.aside__tel{ font-family:var(--serif); font-size:clamp(26px,2.8vw,40px); font-weight:400;
+             letter-spacing:.01em; line-height:1.1; }
+.aside__addr{ font-size:var(--t-sm); color:var(--fg-3); }
+.aside .eyebrow{ color:var(--fg-3); }
+
+.main{ display:flex; align-items:flex-start; overflow:hidden; padding-top:clamp(24px,4.6vh,74px); }
+.main .page{ width:100%; max-width:620px; max-height:100%; overflow-y:auto; overscroll-behavior:contain;
+             scrollbar-width:none; padding-right:2px; }
+.main .page::-webkit-scrollbar{ width:0; }
+.page{ display:flex; flex-direction:column; gap:var(--s4); }
+.page.is-on{ animation:up .7s var(--ease) both; }
+/* 데스크톱에서는 히어로/본문 껍데기를 없애 기존 흐름 그대로 둡니다 */
+.phead,.pbody{ display:contents; }
+
+/* ── 페이지 공통 ── */
+h1{ font-family:var(--serif); font-size:var(--t-h1); font-weight:400;
+    line-height:1.44; letter-spacing:-.01em; text-wrap:pretty; }
+h1.h2{ font-size:var(--t-h2); }
+.ser{ font-family:var(--serif); font-size:var(--t-h3); font-weight:400; line-height:1.6; text-wrap:pretty; }
+.lead{ font-size:var(--t-md); color:var(--fg-2); line-height:2; text-wrap:pretty; }
+.note{ font-size:var(--t-sm); color:var(--fg-3); line-height:1.9; }
+.eyebrow{ font-size:var(--t-xs); font-weight:200; letter-spacing:.16em; color:var(--fg-4); }
+.rule{ height:1px; background:var(--line-2); transform-origin:left; animation:line 1s .2s var(--ease) both; }
+.block{ display:flex; flex-direction:column; gap:var(--s2); }
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 30px; font-size:var(--t-sm); font-weight:400; letter-spacing:.01em;
+  border:1px solid transparent; background:transparent; transition:all .3s var(--ease);
+}
+.btn--fill{ background:#fff; color:#111; }
+.btn--fill:hover{ background:#DDE1E3; transform:translateY(-2px); }
+.btn--line{ border-color:rgba(255,255,255,.4); color:var(--fg); }
+.btn--line:hover{ border-color:#fff; background:rgba(255,255,255,.08); }
+.actions{ display:flex; flex-wrap:wrap; gap:var(--s2); }
+
+.stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s4); }
+.stats li{ display:flex; flex-direction:column; gap:var(--s1); padding-top:15px; border-top:1px solid var(--line-2); }
+.stats b{ font-size:var(--t-lg); font-weight:400; }
+.stats span{ font-size:var(--t-xs); color:var(--fg-3); }
+
+.list li{ display:grid; grid-template-columns:36px 1fr; gap:var(--s4);
+          padding:17px 0; border-bottom:1px solid var(--line);
+          transition:padding-left .3s var(--ease); }
+.list li:last-child{ border-bottom:0; }
+.list li:hover{ padding-left:8px; }
+.list i{ font-style:normal; font-size:var(--t-sm); color:var(--fg-4); padding-top:4px; }
+.list div{ display:flex; flex-direction:column; gap:var(--s1); }
+.list b{ font-size:var(--t-h3); font-weight:400; font-family:var(--sans); }
+.list span{ font-size:var(--t-sm); color:var(--fg-3); }
+
+.plan{ display:flex; gap:var(--s4); align-items:flex-start; padding-top:20px; border-top:1px solid var(--line); }
+.plan:first-of-type{ border-top:0; padding-top:0; }
+.plan__img{ flex:none; width:164px; height:112px; overflow:hidden; filter:saturate(.9) brightness(.98); }
+.plan__img img{ width:100%; height:100%; object-fit:cover; }
+.plan__txt{ display:flex; flex-direction:column; gap:var(--s1); min-width:0; }
+.plan__txt b{ font-size:var(--t-h3); font-weight:400; }
+.plan__price{ font-style:normal; font-family:var(--serif); font-size:clamp(20px,1.9vw,25px);
+              font-weight:400; padding-top:3px; }
+
+.steps{ display:flex; flex-direction:column; gap:var(--s3); padding-top:18px; border-top:1px solid var(--line); }
+.steps ol{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s2) var(--s4); }
+.steps li{ display:flex; gap:var(--s2); align-items:baseline; }
+.steps i{ font-style:normal; font-size:var(--t-xs); color:var(--fg-4); }
+.steps span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-2); }
+
+.ch{ display:flex; flex-direction:column; gap:var(--s2); }
+.ch__item{ display:flex; align-items:center; gap:20px; padding:18px 24px;
+           border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.05);
+           transition:all .3s var(--ease); }
+.ch__item:hover{ border-color:#fff; background:rgba(255,255,255,.1); }
+.ch__item svg{ width:22px; height:22px; flex:none; }
+.ch__item b{ display:block; font-size:var(--t-lg); font-weight:400; letter-spacing:.01em; }
+.ch__item b.tel{ font-family:var(--serif); font-size:clamp(19px,1.7vw,22px); }
+.ch__item small{ display:block; font-size:var(--t-xs); color:var(--fg-3); margin-top:3px; }
+
+/* ════════════════════════════════════════════════════════════
+   데스크톱 홈 패널 — 덜어내기
+   요소를 빼고 간격만 남겼습니다.
+   · 각주 삭제 — 바로 위 문장이 같은 말을 합니다
+   · 구분선 삭제 — 지표의 윗선과 겹쳐 이중선으로 보였습니다
+   · 인용문 세로선 삭제 — 여백이 이미 분리해 줍니다
+   남은 것: 제목 → 리드 → 메시지 → 버튼 → 지표
+   ════════════════════════════════════════════════════════════ */
+@media (min-width:901px){
+  .page[data-page=home]{ gap:0; }
+
+  .page[data-page=home] .rule,
+  .page[data-page=home] .foot{ display:none; }
+
+  .page[data-page=home] h1{ line-height:1.36; }
+
+  /* 읽는 순서: 제목 · 리드 → 메시지 → 버튼 → 지표. 간격만으로 위계를 만듭니다 */
+  .page[data-page=home] .lead   { margin-top:18px; }
+  .page[data-page=home] .block  { order:1; margin-top:46px; max-width:560px; }
+  .page[data-page=home] .actions{ order:2; margin-top:30px; }
+  .page[data-page=home] .stats  { order:3; margin-top:58px; }
+
+  .page[data-page=home] .block .ser{ font-size:21px; line-height:1.62; color:rgba(255,255,255,.94); }
+
+  /* 지표 숫자는 명조로 — 좌측 대표번호와 결을 맞춥니다 */
+  .stats b{ font-family:var(--serif); font-size:21px; letter-spacing:.01em; }
+  .stats li{ padding-top:14px; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   데스크톱 상조상품 — 정리
+   · 사진 제거 — 국화는 밝고 촛불은 거의 검정이라 두 카드의 무게가
+     안 맞았고, 사진/텍스트로 왼쪽 정렬선이 둘로 갈라졌습니다.
+   · 가격을 오른쪽 끝으로 — 이름과 가격이 한 줄에서 맞물려 비교됩니다.
+   · 절차는 3열 → 2열, 각 행에 밑줄을 넣어 표처럼 읽히게.
+   ════════════════════════════════════════════════════════════ */
+@media (min-width:901px){
+  .page[data-page=product]{ gap:0; }
+  .page[data-page=product] .rule{ display:none; }
+  .page[data-page=product] .lead{ margin-top:16px; }
+
+  /* 상품은 나란한 두 장의 카드로 — 제단 사진이 크게 들어가 두 상품이 바로 비교됩니다 */
+  /* 화면 높이에 따라 함께 줄어듭니다 — 노트북(뷰포트 ~700px)에서도 한 화면에 들어옵니다 */
+  .plans-wrap{ display:grid; grid-template-columns:1fr 1fr;
+               gap:clamp(12px,1.8vh,18px); margin-top:clamp(16px,3vh,28px); }
+  .plan{
+    display:flex; flex-direction:column; padding:0; border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    transition:border-color .35s var(--ease), background .35s var(--ease), transform .35s var(--ease);
+  }
+  .plan:hover{ border-color:var(--line-2); background:rgba(255,255,255,.06); transform:translateY(-3px); }
+  .plan__img{ display:block; width:100%; height:clamp(92px,17vh,150px); }
+  .plan__img img{ transition:transform .7s var(--ease); }
+  .plan:hover .plan__img img{ transform:scale(1.04); }
+
+  .plan__txt{ display:flex; flex-direction:column; gap:clamp(5px,.8vh,7px); flex:1;
+              padding:clamp(12px,1.8vh,16px) clamp(14px,1.2vw,17px) clamp(13px,2vh,18px); }
+  .plan__txt .eyebrow{ display:none; }        /* '기본형'은 이름에 이미 들어 있습니다 */
+  .plan__txt b{ font-size:clamp(17px,2vh,19px); }
+  .plan__txt .note{ flex:1; font-size:12.5px; line-height:1.72; }
+  .plan__price{ margin-top:2px; padding-top:clamp(8px,1.3vh,11px);
+                border-top:1px solid var(--line); font-size:clamp(19px,2.6vh,23px); }
+
+  /* 절차는 닫힌 표로 */
+  .steps{ margin-top:clamp(22px,4.4vh,40px); padding-top:clamp(15px,2.6vh,24px);
+          gap:clamp(11px,1.8vh,16px); border-top:1px solid var(--line-2); }
+  .steps ol{ grid-template-columns:repeat(3,1fr); gap:0 28px; }
+  .steps li{ padding:clamp(7px,1.2vh,11px) 0; border-bottom:1px solid var(--line); }
+}
+
+/* 낮은 화면(노트북 뷰포트 ~660~800px)에서도 한 화면에 들어오도록 더 조입니다 */
+@media (min-width:901px) and (max-height:800px){
+  .page[data-page=product] h1{ font-size:clamp(22px,3.2vh,28px); }
+  .page[data-page=product] .lead{ margin-top:10px; font-size:13px; }
+  .plans-wrap{ margin-top:16px; gap:12px; }
+  .plan__img{ height:clamp(68px,14vh,120px); }
+  .plan__txt{ padding:11px 13px 12px; gap:5px; }
+  .plan__txt b{ font-size:16.5px; }
+  .plan__txt .note{ font-size:11.5px; line-height:1.65; }
+  .plan__price{ font-size:18.5px; padding-top:8px; margin-top:0; }
+  .steps{ margin-top:20px; padding-top:14px; gap:10px; }
+  .steps li{ padding:5px 0; }
+  .steps span{ font-size:12.5px; }
+
+  /* 회사소개 — 값 4개를 2열로 접습니다 (세로로 쌓으면 낮은 화면을 넘깁니다) */
+  .page[data-page=about] h1{ font-size:clamp(22px,3.2vh,28px); }
+  .page[data-page=about] .lead{ line-height:1.75; }
+  .list{ display:grid; grid-template-columns:1fr 1fr; column-gap:38px; }
+  .list li{ padding:13px 0; }
+  .list li:nth-last-child(-n+2){ border-bottom:0; }
+  .list b{ font-size:17px; }
+  .list span{ font-size:12.5px; line-height:1.72; }
+
+  /* 홈 — 블록 사이 간격을 줄입니다 */
+  .page[data-page=home] h1{ font-size:clamp(26px,4vh,38px); }
+  .page[data-page=home] .lead{ margin-top:13px; }
+  .page[data-page=home] .block{ margin-top:30px; }
+  .page[data-page=home] .actions{ margin-top:22px; }
+  .page[data-page=home] .stats{ margin-top:36px; }
+
+  /* 상담·문의 — 채널 카드를 조입니다 */
+  .page[data-page=contact] h1{ font-size:clamp(22px,3.2vh,28px); }
+  .ch{ gap:8px; }
+  .ch__item{ padding:14px 20px; gap:16px; }
+  .ch__item b{ font-size:17px; }
+  .ch__item b.tel{ font-size:19px; }
+}
+
+/* ── 모션 ───────────────────────────────────────── */
+@keyframes drift{ 0%{transform:scale(1.04)} 100%{transform:scale(1.14) translate3d(-1.5%,-1.2%,0)} }
+@keyframes up{ from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+@keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+@keyframes line{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition-duration:.01ms !important; } }
+
+
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE — 하나의 시스템으로 다시 짬
+   · 사진과 제목을 분리 — 사진은 사진답게, 제목은 어두운 면 위에서 또렷하게
+   · 좌측 정렬선 하나 — 번호는 제목 위로 올립니다
+   · 정보 묶음은 전부 같은 카드(.mcard) 규칙
+   · 회사 정보는 본문에서 떼어 푸터로
+   ════════════════════════════════════════════════════════════ */
+@media (max-width:900px){
+  :root{
+    --gut:22px;
+    --m-hero:200px;        /* 하위 페이지 사진 띠 높이 */
+    --m-bar:96px;          /* 하단 고정 바가 차지하는 높이 */
+
+    --t-h1:30px;           /* 페이지 제목 */
+    --t-h2:30px;
+    --t-h3:17px;           /* 소제목 */
+    --t-lg:17px;
+    --t-md:14px;           /* 본문 */
+    --t-sm:12.5px;         /* 캡션 */
+    --t-xs:10.5px;         /* 라벨 */
+
+    --card:   rgba(255,255,255,.035);
+    --card-b: rgba(255,255,255,.16);
+  }
+  body{ line-height:1.85; }
+  .only-m{ display:inline; }
+  .only-d{ display:none !important; }
+
+  .stage{ height:auto; min-height:100dvh; overflow:visible; background:var(--bg); }
+  .stage__bg,.scrim,.panel{ display:none; }
+  .layout{ display:block; height:auto; padding:0; }
+  .row{ display:block; }
+  .row--top,.aside{ display:none; }
+  .col-l,.col-r{ width:100%; padding:0; }
+  .main{ display:block; overflow:visible; padding:0; }
+  .main .page{ max-width:none; max-height:none; overflow:visible; padding:0; }
+  .page{ display:block; }
+
+  /* ── 상단 바 ─────────────────────────────────── */
+  .mtop{
+    position:absolute; top:0; left:0; right:0; z-index:12;
+    display:flex; align-items:center; gap:12px;
+    height:60px; padding:0 var(--gut);
+  }
+  .mtop__brand{ display:flex; align-items:center; gap:10px; }
+  .mtop__mark{ width:22px; height:28px; flex:none; color:#fff; }
+  .mtop__brand b{ font-family:var(--serif); font-size:19px; font-weight:700; letter-spacing:.04em; }
+  .mtop__back{ display:none; width:28px; height:44px; margin-left:-5px; }
+  .mtop__back svg{ width:23px; height:23px; }
+  .mtop__menu{ display:flex; flex-direction:column; justify-content:center; align-items:flex-end;
+               gap:6px; width:44px; height:44px; margin-left:auto; }
+  .mtop__menu i{ display:block; width:21px; height:1px; background:#fff; }
+  .mtop__tel{ display:none; margin-left:auto; align-items:center; min-height:44px;
+              font-size:11.5px; font-weight:300; letter-spacing:.08em; color:rgba(255,255,255,.78); }
+  .stage:not(.at-home) .mtop__back{ display:flex; align-items:center; }
+  .stage:not(.at-home) .mtop__menu{ display:none; }
+  .stage:not(.at-home) .mtop__tel{ display:flex; }
+  .stage:not(.at-home) .mtop__mark{ display:none; }
+  .stage:not(.at-home) .mtop__brand b{ font-size:16px; }
+
+  /* ── 하위 페이지: 사진 띠 → 제목 (겹치지 않습니다) ── */
+  .phead{
+    position:relative; display:block;
+    padding:calc(var(--m-hero) + 30px) var(--gut) 0;
+  }
+  .phead::before{                       /* 사진은 상단 띠에만, 또렷하게 */
+    content:''; position:absolute; top:0; left:0; right:0; height:var(--m-hero);
+    background-size:cover; background-position:50% 50%;
+    filter:saturate(.55) contrast(1.05) brightness(.92);
+  }
+  .phead::after{                        /* 아래로만 살짝 떨어뜨려 본문과 잇습니다 */
+    content:''; position:absolute; top:0; left:0; right:0; height:var(--m-hero);
+    background:linear-gradient(180deg,rgba(8,10,11,.5) 0%,rgba(8,10,11,.05) 34%,rgba(15,18,20,.72) 82%,var(--bg) 100%);
+  }
+  .phead > *{ position:relative; z-index:1; }
+  .phead h1{ line-height:1.4; }
+  .phead .lead{ margin-top:12px; font-size:var(--t-md); line-height:1.85; color:var(--fg-3); }
+
+  /* 데스크톱 배경과 같은 배정 — 화면마다 사진 하나씩 */
+  .page[data-page=about]   .phead::before{ background-image:url(../img/ph-rose.jpg);    background-position:50% 56%; }
+  .page[data-page=product] .phead::before{ background-image:url(../img/ph-candle.jpg);  background-position:58% 44%; }
+  .page[data-page=contact] .phead::before{ background-image:url(../img/ph-tribute.jpg); background-position:44% 46%; }
+
+  /* ── 홈: 사진 히어로 위에 메시지 ── */
+  .page[data-page=home] .phead{
+    display:flex; flex-direction:column; justify-content:flex-end; gap:16px;
+    min-height:540px; padding:60px var(--gut) 34px; overflow:hidden;
+  }
+  .page[data-page=home] .phead::before{
+    inset:0; height:auto; background-image:url(../img/ph-mourners.jpg);
+    background-position:52% 46%;
+    filter:saturate(.5) contrast(1.05) brightness(.72);
+    animation:drift 40s linear infinite alternate;
+  }
+  .page[data-page=home] .phead::after{
+    inset:0; height:auto;
+    background:linear-gradient(180deg,rgba(8,10,11,.6) 0%,rgba(8,10,11,.15) 28%,rgba(8,10,11,.6) 64%,rgba(8,10,11,.94) 100%);
+  }
+  .page[data-page=home] .phead h1{ font-size:32px; line-height:1.44; text-shadow:0 2px 24px rgba(0,0,0,.5); }
+  .page[data-page=home] .phead .lead{ margin-top:0; max-width:300px; color:rgba(255,255,255,.8); }
+  .tagline{ display:flex; align-items:center; gap:11px; font-size:10.5px; font-weight:300;
+            letter-spacing:.2em; color:#fff; }
+  .tagline i{ display:block; width:24px; height:1px; background:rgba(255,255,255,.7); flex:none; }
+
+  /* ── 본문 ─────────────────────────────────────── */
+  .pbody{
+    display:flex; flex-direction:column; gap:40px;
+    padding:40px var(--gut) calc(var(--m-bar) + env(safe-area-inset-bottom));
+  }
+  .rule,.actions{ display:none; }
+
+  /* 섹션 라벨 — 본문과 확실히 구분되게 */
+  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.2em;
+            color:rgba(255,255,255,.45); }
+
+  /* 카드 한 규칙 — 상품·채널이 같은 옷을 입습니다 */
+  .m-plan,.ch__item{
+    display:block; width:100%; padding:18px;
+    border:1px solid var(--card-b); background:var(--card);
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+
+  /* 홈 — 지표 → 메시지 → 상품 → 푸터 */
+  .stats{ order:1; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .stats li{ gap:5px; padding-top:13px; border-top:1px solid rgba(255,255,255,.24); }
+  .stats b{ font-family:var(--serif); font-size:17px; }
+  .stats span{ font-size:10.5px; line-height:1.5; color:var(--fg-4); }
+
+  .block{ order:2; display:flex; flex-direction:column; gap:10px; }
+  .ser{ font-size:19px; line-height:1.62; }
+  .foot{ font-size:var(--t-sm); line-height:1.95; color:var(--fg-4); }
+
+  .m-plans{ order:3; display:flex; flex-direction:column; gap:10px; }
+  .m-plans .eyebrow{ margin-bottom:4px; }
+  .m-plan__top{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .m-plan__top b{ font-size:16px; font-weight:400; }
+  .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px; white-space:nowrap; }
+  .m-plan__desc{ display:block; margin-top:9px; font-size:var(--t-sm); font-weight:200;
+                 line-height:1.85; color:var(--fg-3); }
+
+  /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
+  .list{ display:flex; flex-direction:column; gap:26px; }
+  .list li{ display:block; padding:0; border:0; }
+  .list li:hover{ padding-left:0; }
+  .list i{ display:block; font-style:normal; font-size:var(--t-xs); font-weight:300;
+           letter-spacing:.2em; color:rgba(255,255,255,.45); margin-bottom:7px; }
+  .list div{ display:block; }
+  .list b{ display:block; font-size:var(--t-h3); font-weight:400; margin-bottom:5px; }
+  .list span{ font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
+
+  /* 상품 — 사진과 글을 한 덩어리로 */
+  .plans-wrap{ display:flex; flex-direction:column; gap:40px; }
+  .plan{ display:block; padding:0; border:0; background:none; }
+  .plan:first-of-type{ padding:0; border:0; }
+  .plan__img{ width:100%; height:180px; margin-bottom:16px; filter:saturate(.9) brightness(.98); }
+  .plan__txt{ display:block; }
+  .plan__txt .eyebrow{ display:block; margin-bottom:8px; }
+  .plan__txt b{ display:block; font-size:19px; font-weight:400; margin-bottom:7px; }
+  .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
+  .plan__price{ display:block; margin-top:12px; padding-top:12px;
+                border-top:1px solid rgba(255,255,255,.14);
+                font-size:25px; }
+
+  /* 절차 — 2열로 접습니다. 세로로 6줄 세우면 화면을 너무 잡아먹습니다 */
+  .steps{ display:flex; flex-direction:column; gap:15px; padding:0; border:0; }
+  .steps ol{ display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
+  .steps li{ display:flex; align-items:center; gap:9px; padding:11px 0; border:0;
+             border-bottom:1px solid rgba(255,255,255,.12); }
+  .steps li:nth-last-child(-n+2){ border-bottom:0; }
+  .steps i{
+    flex:none; display:flex; align-items:center; justify-content:center;
+    width:21px; height:21px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.26); background:var(--bg);
+    font-size:9px; font-weight:300; letter-spacing:.04em; color:var(--fg-4);
+  }
+  .steps li:first-child i,
+  .steps li:last-child i{ border-color:rgba(255,255,255,.75); color:#fff; }
+  .steps span{ font-size:12.5px; font-weight:300; line-height:1.45; color:var(--fg-2); }
+
+  /* 문의 — 채널 */
+  .ch{ display:flex; flex-direction:column; gap:10px; }
+  .ch__item{ display:flex; align-items:center; gap:16px; }
+  .ch__item svg{ width:20px; height:20px; }
+  .ch__item b{ font-size:16px; }
+  .ch__item b.tel{ font-size:21px; }
+  .ch__item small{ font-size:11.5px; color:var(--fg-4); margin-top:2px; }
+
+  /* ── 푸터 — 본문에서 떼어냅니다 ── */
+  .m-info{ order:4;                     /* 홈에서 지표·메시지·상품 다음에 옵니다 */
+           display:block; margin-top:8px; padding-top:26px;
+           border-top:1px solid rgba(255,255,255,.14); }
+  .m-info .eyebrow{ display:block; margin-bottom:10px; }
+  .m-info p{ font-size:12px; font-weight:200; line-height:2.1; color:var(--fg-4); }
+
+  /* ── 하단 고정 바 ── */
+  .mfoot{
+    position:fixed; left:0; right:0; bottom:0; z-index:15;
+    display:flex; gap:8px;
+    padding:16px var(--gut) calc(18px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,rgba(15,18,20,0) 0%,rgba(15,18,20,.92) 38%,#0F1214 100%);
+    animation:fadeIn 1.2s .6s ease both;
+  }
+  .mfoot__tel{ flex:1; display:flex; align-items:center; justify-content:center; gap:10px;
+               height:52px; background:#fff; color:#111; }
+  .mfoot__tel span{ font-size:11px; font-weight:300; letter-spacing:.1em; color:rgba(17,17,17,.6); }
+  .mfoot__tel b{ font-family:var(--serif); font-size:17.5px; font-weight:400; letter-spacing:.01em; }
+  .mfoot__kko{ flex:none; display:flex; align-items:center; justify-content:center;
+               width:92px; height:52px; border:1px solid rgba(255,255,255,.38);
+               font-size:12.5px; font-weight:300; }
+
+  /* ── 메뉴 시트 ── */
+  .sheet{
+    position:fixed; inset:0; z-index:60; display:flex; flex-direction:column;
+    background:rgba(11,13,14,.98); backdrop-filter:blur(6px);
+    padding:8px var(--gut) calc(34px + env(safe-area-inset-bottom));
+    animation:fadeIn .26s ease both;
+  }
+  .sheet__close{ align-self:flex-end; width:44px; height:44px; margin-right:-10px;
+                 display:flex; align-items:center; justify-content:center; }
+  .sheet__close svg{ width:23px; height:23px; }
+  .sheet__nav{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:0; }
+  .sheet__nav button{ display:block; padding:16px 0; border-bottom:1px solid var(--line);
+                      font-family:var(--serif); font-size:25px; font-weight:400; color:var(--fg-3); }
+  .sheet__nav button.is-active{ color:#fff; }
+  .sheet__foot{ display:flex; flex-direction:column; gap:5px; }
+  .sheet__foot a{ font-family:var(--serif); font-size:27px; letter-spacing:.01em; }
+  .sheet__foot .note{ font-size:12px; color:var(--fg-4); }
+  body.is-locked{ overflow:hidden; }
+}
+
+@media (max-width:360px){
+  :root{ --gut:18px; --t-h1:27px; --t-h2:27px; }
+  .page[data-page=home] .phead h1{ font-size:28px; }
+  .mfoot__tel b{ font-size:16px; }
+  .mfoot__kko{ width:82px; }
+  .stats{ gap:10px; }
+}
