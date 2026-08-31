@@ -435,8 +435,8 @@ h1.h2{ font-size:var(--t-h2); }
   .rule,.actions{ display:none; }
 
   /* 섹션 라벨 — 본문과 확실히 구분되게 */
-  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.2em;
-            color:rgba(255,255,255,.45); }
+  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.13em;
+            color:rgba(255,255,255,.52); }
 
   /* 카드 한 규칙 — 상품·채널이 같은 옷을 입습니다 */
   .m-plan,.ch__item{
@@ -453,16 +453,20 @@ h1.h2{ font-size:var(--t-h2); }
 
   .block{ order:2; display:flex; flex-direction:column; gap:10px; }
   .ser{ font-size:19px; line-height:1.62; }
-  .foot{ font-size:12px; line-height:1.8; color:var(--fg-4); }
+  .foot{ display:none; }        /* 각주 — 위 문장과 내용이 겹쳐 모바일에서는 감춥니다 */
 
-  .m-plans{ order:3; display:flex; flex-direction:column; gap:10px; }
+  .m-plans{ order:3; display:flex; flex-direction:column; gap:9px;
+            padding-top:26px; border-top:1px solid rgba(255,255,255,.16); }
   .page[data-page=home] .steps{ order:4; padding-top:26px; border-top:1px solid rgba(255,255,255,.16); }
-  .m-plans .eyebrow{ margin-bottom:4px; }
-  .m-plan__top{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .m-plan__top b{ font-size:16px; font-weight:400; }
+  .m-plans .eyebrow{ margin-bottom:5px; }
+  .m-plan{ display:flex; align-items:center; gap:12px; padding:16px 16px 16px 18px; }
+  .m-plan__top{ flex:1; display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .m-plan__top b{ font-size:15.5px; font-weight:400; }
   .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px; white-space:nowrap; }
-  .m-plan__desc{ display:block; margin-top:9px; font-size:var(--t-sm); font-weight:200;
-                 line-height:1.85; color:var(--fg-3); }
+  .m-plan__desc{ display:none; }      /* 자세한 설명은 상조상품 페이지에서 */
+  .m-plan::after{ content:''; flex:none; width:7px; height:7px; margin-right:2px;
+                  border-top:1px solid var(--fg-4); border-right:1px solid var(--fg-4);
+                  transform:rotate(45deg); }
 
   /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
   .list{ display:flex; flex-direction:column; gap:21px; }
@@ -484,6 +488,7 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__txt .eyebrow{ display:block; margin-bottom:8px; }
   .plan__txt b{ display:block; font-size:19px; font-weight:400; margin-bottom:7px; }
   .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
+  .plan__spec{ margin-top:5px; font-size:12px; line-height:1.8; }
   .plan__price{ display:block; margin-top:12px; padding-top:12px;
                 border-top:1px solid rgba(255,255,255,.14);
                 font-size:25px; }
@@ -516,7 +521,7 @@ h1.h2{ font-size:var(--t-h2); }
   .m-info{ order:5;                     /* 홈에서 맨 마지막 (지표·메시지·상품·절차 다음) */
            display:block; margin-top:8px; padding-top:26px;
            border-top:1px solid rgba(255,255,255,.14); }
-  .m-info .eyebrow{ display:block; margin-bottom:10px; }
+  .m-info .eyebrow{ display:none; }   /* 한 줄 푸터에 라벨은 과합니다 */
   .m-info p{ font-size:12px; font-weight:200; line-height:2.1; color:var(--fg-4); }
 
   /* ── 하단 고정 바 ── */
