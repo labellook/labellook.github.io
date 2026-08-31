@@ -373,14 +373,12 @@ h1.h2{ font-size:var(--t-h2); }
     position:fixed; top:0; left:0; right:0; z-index:40;
     display:flex; align-items:center; justify-content:space-between; gap:12px;
     height:60px; padding:0 var(--gut);
-    border-bottom:1px solid transparent;
-    transition:background .3s var(--ease), backdrop-filter .3s var(--ease),
-               border-color .3s var(--ease);
+    background:rgba(23,18,14,.72);          /* 항상 바로 보입니다 */
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    transition:background .3s var(--ease);
   }
-  .mtop.is-stuck{
-    background:rgba(23,18,14,.92); backdrop-filter:blur(14px);
-    border-bottom-color:var(--line);
-  }
+  .mtop.is-stuck{ background:rgba(23,18,14,.94); }   /* 스크롤하면 더 진하게 */
   .mtop__brand{ display:flex; align-items:center; gap:10px; }
   .mtop__mark{ width:22px; height:28px; flex:none; color:var(--beige); }
   .mtop__brand b{ font-family:var(--serif); font-size:19px; font-weight:700; letter-spacing:.04em; }
