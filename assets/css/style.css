@@ -21,8 +21,8 @@
   --beige:   #E3D3B6;               /* 강조 — 가격 */
   --beige-d: #CFBB99;
   --on-beige:#241B12;
-  --btn:     #614A33;               /* 하단 버튼 — 깊은 갈색 */
-  --btn-d:   #74593D;
+  --btn:     #4E3B29;               /* 하단 버튼 — 더 깊은 갈색 */
+  --btn-d:   #614A33;
   --on-btn:  #F2E8D8;
 
   --serif: 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
@@ -578,7 +578,7 @@ h1.h2{ font-size:var(--t-h2); }
     display:flex; align-items:center; justify-content:center; gap:6px;
     height:54px; border-radius:0;             /* 각지게 */
     background:var(--btn); color:var(--on-btn);
-    border:1px solid rgba(242,232,216,.12); box-shadow:none;
+    border:1px solid rgba(242,232,216,.2); box-shadow:none;
     font-size:13.5px; font-weight:500; letter-spacing:.01em;
     transition:background .2s var(--ease);
   }
