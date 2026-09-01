@@ -32,8 +32,8 @@
   --t-h2:  clamp(24px, 2.5vw, 32px);
   --t-h3:  clamp(18px, 1.55vw, 22px);
   --t-lg:  clamp(16px, 1.35vw, 19px);
-  --t-md:  clamp(14px, 1.1vw, 15.5px);
-  --t-sm:  clamp(12.5px, .97vw, 13.5px);
+  --t-md:  clamp(14.5px, 1.13vw, 16px);
+  --t-sm:  clamp(13px, 1vw, 14px);
   --t-xs:  clamp(11px, .85vw, 12px);
 
   --s1:6px; --s2:10px; --s3:16px; --s4:24px; --s5:32px; --s6:44px;
@@ -381,8 +381,8 @@ h1.h2{ font-size:var(--t-h2); }
     --t-h2:30px;
     --t-h3:17px;           /* 소제목 */
     --t-lg:17px;
-    --t-md:15px;           /* 본문 */
-    --t-sm:13.5px;         /* 캡션 */
+    --t-md:15.5px;         /* 본문 */
+    --t-sm:14px;           /* 캡션 */
     --t-xs:11.5px;         /* 라벨 */
 
     --card:   rgba(243,233,219,.035);
