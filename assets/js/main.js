@@ -47,8 +47,19 @@
     setBg(PAGE_BG[page]);
 
     if (isMobile()) window.scrollTo(0, 0);
+    updateMore();
     if (location.hash.slice(1) !== page) history.replaceState(null, '', '#' + page);
   }
+
+  /* 데스크톱에서 내용이 화면보다 길면 하단이 흐려져 스크롤을 알립니다 */
+  var main = $('.main');
+  function updateMore() {
+    var on = sections.filter(function (s) { return !s.hidden; })[0];
+    if (!on || !main) return;
+    main.classList.toggle('has-more', on.scrollHeight - on.clientHeight - on.scrollTop > 8);
+  }
+  sections.forEach(function (s) { s.addEventListener('scroll', updateMore, { passive: true }); });
+  window.addEventListener('resize', updateMore);
 
   /* ── 3. 모바일 상단 바 — 스크롤하면 배경이 생깁니다 ── */
   var mtop = $('.mtop');
