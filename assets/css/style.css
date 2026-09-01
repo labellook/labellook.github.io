@@ -157,7 +157,7 @@ h1.h2{ font-size:var(--t-h2); }
 .ser{ font-family:var(--serif); font-size:var(--t-h3); font-weight:400; line-height:1.6; text-wrap:pretty; }
 .lead{ font-size:var(--t-md); color:var(--fg-2); line-height:2; text-wrap:pretty; }
 .note{ font-size:var(--t-sm); color:var(--fg-3); line-height:1.9; }
-.eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.06em; color:var(--fg-3); }
+.eyebrow{ font-size:var(--t-sm); font-weight:400; letter-spacing:.04em; color:var(--fg-2); }
 .rule{ height:1px; background:var(--line-2); transform-origin:left; animation:line 1s .2s var(--ease) both; }
 .block{ display:flex; flex-direction:column; gap:var(--s2); }
 
@@ -479,8 +479,8 @@ h1.h2{ font-size:var(--t-h2); }
   .rule,.actions{ display:none; }
 
   /* 섹션 라벨 — 본문과 확실히 구분되게 */
-  .eyebrow{ font-size:var(--t-xs); font-weight:300; letter-spacing:.06em;
-            color:rgba(243,233,219,.6); }
+  .eyebrow{ font-size:13.5px; font-weight:400; letter-spacing:.04em;
+            color:var(--fg-2); }
 
   /* 카드 한 규칙 — 상품·채널이 같은 옷을 입습니다 */
   .ch__item{
