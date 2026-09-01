@@ -62,7 +62,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 :focus-visible{ outline:2px solid var(--beige); outline-offset:3px; border-radius:2px; }
 
 /* 모바일/데스크톱 전용 조각 */
-.only-m,.tagline,.m-plans,.m-info,.mtop,.mfoot,.sheet{ display:none; }
+.only-m,.tagline,.m-info,.mtop,.mfoot{ display:none; }
 
 /* ── 무대 ───────────────────────────────────────── */
 .stage{ position:relative; height:100vh; min-height:600px; overflow:hidden; background:var(--bg); }
@@ -364,7 +364,6 @@ h1.h2{ font-size:var(--t-h2); }
 @keyframes line{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
 @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition-duration:.01ms !important; } }
 
-
 /* ════════════════════════════════════════════════════════════
    MOBILE — 하나의 시스템으로 다시 짬
    · 사진과 제목을 분리 — 사진은 사진답게, 제목은 어두운 면 위에서 또렷하게
@@ -489,11 +488,6 @@ h1.h2{ font-size:var(--t-h2); }
     transition:border-color .3s var(--ease), background .3s var(--ease);
   }
   /* 홈 상품 요약은 박스가 아니라 목록입니다 — 테두리도 화살표도 없이 */
-  .m-plan{
-    display:flex; align-items:baseline; justify-content:space-between; gap:14px;
-    width:100%; padding:15px 0; border:0; border-bottom:1px solid var(--line);
-    background:none; border-radius:0;
-  }
 
   /* 홈 — 지표 → 메시지 → 상품 → 푸터 */
   .stats{ order:2; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -506,14 +500,7 @@ h1.h2{ font-size:var(--t-h2); }
   .ser{ font-size:19px; line-height:1.62; }
   .foot{ display:none; }        /* 각주 — 위 문장과 내용이 겹쳐 모바일에서는 감춥니다 */
 
-  .m-plans{ order:3; display:flex; flex-direction:column; gap:0; padding-top:0; border:0; }
   .page[data-page=home] .steps{ order:4; padding-top:0; border:0; }
-  .m-plans .eyebrow{ display:none; }   /* 홈에서는 라벨 없이 목록만 */
-
-  .m-plan__top{ flex:1; display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
-  .m-plan__top b{ font-size:16px; font-weight:400; }
-  .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px; white-space:nowrap; color:var(--beige); }
-  .m-plan__desc{ display:none; }      /* 자세한 설명은 상조상품 페이지에서 */
 
   /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
   .list{ display:flex; flex-direction:column; gap:0; }
