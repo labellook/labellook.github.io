@@ -599,23 +599,21 @@ h1.h2{ font-size:var(--t-h2); }
   /* ── 하단 고정 바 ── */
   .mfoot{
     position:fixed; left:0; right:0; bottom:0; z-index:15;
-    display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:1px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     padding:12px var(--gut) calc(14px + env(safe-area-inset-bottom));
     background:var(--bg); box-shadow:inset 0 1px 0 var(--line);
   }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
     height:54px; border-radius:0;             /* 각지게 */
-    background:#2A2118;
+    background:var(--beige); color:var(--on-beige);
     border:0; box-shadow:none;
-    font-size:14px; font-weight:400; letter-spacing:.01em; color:var(--fg);
-    transition:background .2s var(--ease), transform .2s var(--ease);
+    font-size:13.5px; font-weight:500; letter-spacing:.01em;
+    transition:background .2s var(--ease);
   }
-  .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.85; }
-  .mfoot__btn:active{ background:#3A2E21; transform:translateY(1px); }
-  .mfoot__btn--fill{ background:var(--beige); color:var(--on-beige); font-weight:500; }
-  .mfoot__btn--fill svg{ opacity:1; }
-  .mfoot__btn--fill:active{ background:var(--beige-d); }
+  .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.9; }
+  .mfoot__btn:active{ background:var(--beige-d); }
+
 
   /* ── 메뉴 시트 ── */
   .sheet{
