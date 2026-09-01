@@ -21,8 +21,9 @@
   --beige:   #E3D3B6;               /* 강조 — 가격 */
   --beige-d: #CFBB99;
   --on-beige:#241B12;
-  --btn:     #C2A97F;               /* 하단 버튼 — 베이지보다 한 단계 어둡게 */
-  --btn-d:   #AE9569;
+  --btn:     #614A33;               /* 하단 버튼 — 깊은 갈색 */
+  --btn-d:   #74593D;
+  --on-btn:  #F2E8D8;
 
   --serif: 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
   --sans:  'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
@@ -545,12 +546,15 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__price{ display:block; margin-top:18px; padding-top:0; border:0;
                 font-size:29px; letter-spacing:.01em; }
 
-  /* 비용 구조 — 좁은 화면에서는 용어를 설명 위로 */
-  .cost{ gap:26px; padding-top:26px; border-top:1px solid var(--line); }
-  .cost__list{ gap:18px; }
-  .cost__list li{ display:block; }
-  .cost__list b{ display:block; font-size:16px; letter-spacing:-.01em; margin-bottom:5px; }
-  .cost__list span{ display:block; font-size:var(--t-sm); line-height:1.75; }
+  /* 비용 구조 — 세 칸으로 나눠 한 줄에 */
+  .cost{ gap:24px; padding-top:26px; border-top:1px solid var(--line); }
+  .cost__list{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+  .cost__list li{ display:block; padding:0 11px; border-left:1px solid var(--line); }
+  .cost__list li:first-child{ padding-left:0; border-left:0; }
+  .cost__list li:last-child{ padding-right:0; }
+  .cost__list b{ display:block; font-size:14px; letter-spacing:-.01em; margin-bottom:7px; }
+  .cost__list span{ display:block; font-size:11px; font-weight:300;
+                    line-height:1.6; color:var(--fg-3); }
   
   /* 절차 — 2열로 접습니다. 세로로 6줄 세우면 화면을 너무 잡아먹습니다 */
   .steps{ display:flex; flex-direction:column; gap:15px; padding:0; border:0; }
@@ -581,13 +585,13 @@ h1.h2{ font-size:var(--t-h2); }
     position:fixed; left:0; right:0; bottom:0; z-index:15;
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     padding:12px var(--gut) calc(14px + env(safe-area-inset-bottom));
-    background:var(--bg); box-shadow:inset 0 1px 0 var(--line);
+    background:#0E0A07; box-shadow:inset 0 1px 0 rgba(242,232,216,.1);
   }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
     height:54px; border-radius:0;             /* 각지게 */
-    background:var(--btn); color:var(--on-beige);
-    border:0; box-shadow:none;
+    background:var(--btn); color:var(--on-btn);
+    border:1px solid rgba(242,232,216,.12); box-shadow:none;
     font-size:13.5px; font-weight:500; letter-spacing:.01em;
     transition:background .2s var(--ease);
   }
