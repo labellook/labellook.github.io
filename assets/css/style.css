@@ -199,26 +199,14 @@ h1.h2{ font-size:var(--t-h2); }
 .steps i{ font-style:normal; font-family:var(--serif); font-size:13px; color:var(--fg-4); }
 .steps span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-2); }
 
-/* ── 장례 비용 구조 ── */
-.cost{ display:flex; flex-direction:column; gap:var(--s3); padding-top:var(--s4);
-       border-top:1px solid var(--line); }
-.cost__list{ display:flex; flex-direction:column; }
-.cost__list li{ display:grid; grid-template-columns:22px 1fr; gap:12px;
-                padding:13px 0; border-bottom:1px solid var(--line); }
-.cost__list li:last-child{ border-bottom:0; }
-.cost__list i{ font-style:normal; font-size:var(--t-xs); color:var(--fg-4); padding-top:5px; }
-.cost__list div{ display:flex; flex-direction:column; gap:5px; }
+/* ── 장례 비용 구조 — 용어와 설명, 그리고 한 문장. 그게 전부입니다 ── */
+.cost{ display:flex; flex-direction:column; gap:var(--s4);
+       padding-top:var(--s4); border-top:1px solid var(--line); }
+.cost__list{ display:flex; flex-direction:column; gap:var(--s2); }
+.cost__list li{ display:grid; grid-template-columns:84px 1fr; gap:var(--s4);
+                align-items:baseline; padding:0; border:0; }
 .cost__list b{ font-size:var(--t-md); font-weight:400; }
-.cost__list span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-3); line-height:1.7; }
-
-/* 70% — 이 페이지의 핵심 숫자 */
-.cost__key{ display:flex; align-items:baseline; gap:20px; padding:var(--s4) 0 var(--s3);
-            border-top:1px solid var(--line); border-bottom:0; }
-.cost__key em{ flex:none; font-style:normal; font-family:var(--serif);
-               font-size:clamp(30px,3.4vw,40px); font-weight:400; line-height:1;
-               letter-spacing:-.01em; color:var(--beige); }
-.cost__key em small{ font-size:.5em; margin-left:2px; }
-.cost__key p{ font-size:var(--t-sm); font-weight:300; line-height:1.75; color:var(--fg-2); }
+.cost__list span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-3); line-height:1.75; }
 
 .cost__note{ font-size:var(--t-sm); font-weight:300; line-height:1.85; color:var(--fg-3); }
 .cost__note b{ font-weight:400; color:var(--fg); }
@@ -327,10 +315,8 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__price{ margin-top:auto; padding-top:clamp(8px,1.3vh,11px);
                 border-top:1px solid var(--line); font-size:clamp(19px,2.6vh,23px); }
 
-  /* 새로 추가된 비용 구조 — 기존 조판 규칙을 그대로 따릅니다 */
-  .cost{ margin-top:clamp(20px,3.4vh,30px); padding-top:clamp(16px,2.6vh,22px); gap:var(--s3); }
-  .cost__list li{ padding:12px 0; }
-  .cost__key{ padding:var(--s3) 0; }
+  /* 새로 추가된 비용 구조 */
+  .cost{ margin-top:clamp(20px,3.4vh,30px); padding-top:clamp(16px,2.6vh,22px); gap:var(--s4); }
 
   /* 절차는 3열 2행 표 (홈 하단) */
   .steps ol{ grid-template-columns:repeat(3,1fr); gap:clamp(8px,1.4vh,13px) 26px; }
@@ -374,7 +360,6 @@ h1.h2{ font-size:var(--t-h2); }
 @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
 @keyframes line{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
 @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition-duration:.01ms !important; } }
-
 
 
 /* ════════════════════════════════════════════════════════════
@@ -527,7 +512,6 @@ h1.h2{ font-size:var(--t-h2); }
   .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px; white-space:nowrap; color:var(--beige); }
   .m-plan__desc{ display:none; }      /* 자세한 설명은 상조상품 페이지에서 */
 
-
   /* 회사소개 — 번호를 제목 위로 올려 정렬선을 하나로 */
   .list{ display:flex; flex-direction:column; gap:0; }
   .list li{ display:grid; grid-template-columns:26px 1fr; column-gap:12px;
@@ -556,23 +540,16 @@ h1.h2{ font-size:var(--t-h2); }
                 letter-spacing:-.012em; margin-bottom:8px; }
   .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
   .plan__spec{ margin-top:14px; font-size:12.5px; line-height:1.8; color:var(--fg-4); }
-  .plan__price{ display:block; margin-top:16px; padding-top:16px;
-                border-top:1px solid var(--line);
+  .plan__price{ display:block; margin-top:18px; padding-top:0; border:0;
                 font-size:29px; letter-spacing:.01em; }
 
-  /* 비용 구조 — 회사소개 목록과 같은 규칙을 씁니다 */
-  .cost{ gap:22px; padding-top:0; border:0; }
-  .cost__list li{ grid-template-columns:26px 1fr; column-gap:12px; padding:15px 0; }
-  .cost__list i{ padding-top:2px; font-size:var(--t-xs); }
-  .cost__list b{ font-size:16px; letter-spacing:-.01em; }
-  .cost__list span{ font-size:var(--t-sm); font-weight:300; line-height:1.75; }
-
-  .cost__key{ gap:16px; padding:18px; border:0; border-radius:6px; background:var(--card); }
-  .cost__key em{ font-size:40px; }
-  .cost__key p{ font-size:var(--t-sm); font-weight:300; line-height:1.7; }
-
-  .cost__note{ font-size:var(--t-sm); font-weight:300; line-height:1.85; }
-
+  /* 비용 구조 — 좁은 화면에서는 용어를 설명 위로 */
+  .cost{ gap:26px; padding-top:26px; border-top:1px solid var(--line); }
+  .cost__list{ gap:18px; }
+  .cost__list li{ display:block; }
+  .cost__list b{ display:block; font-size:16px; letter-spacing:-.01em; margin-bottom:5px; }
+  .cost__list span{ display:block; font-size:var(--t-sm); line-height:1.75; }
+  
   /* 절차 — 2열로 접습니다. 세로로 6줄 세우면 화면을 너무 잡아먹습니다 */
   .steps{ display:flex; flex-direction:column; gap:15px; padding:0; border:0; }
   .steps ol{ display:grid; grid-template-columns:1fr 1fr; gap:13px 14px; }
@@ -614,7 +591,6 @@ h1.h2{ font-size:var(--t-h2); }
   }
   .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.9; }
   .mfoot__btn:active{ background:var(--beige-d); }
-
 
   /* ── 메뉴 시트 ── */
   .sheet{
