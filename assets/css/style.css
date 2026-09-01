@@ -375,7 +375,7 @@ h1.h2{ font-size:var(--t-h2); }
   :root{
     --gut:22px;
     --m-hero:200px;        /* 하위 페이지 사진 띠 높이 */
-    --m-bar:104px;         /* 하단 고정 바(80px) + 여유 */
+    --m-bar:80px;          /* 하단 고정 바(56px) + 여유 */
 
     --t-h1:30px;           /* 페이지 제목 */
     --t-h2:30px;
@@ -568,21 +568,23 @@ h1.h2{ font-size:var(--t-h2); }
   .m-info p{ font-size:12.5px; font-weight:300; line-height:2; color:var(--fg-3); }
 
   /* ── 하단 고정 바 ── */
+  /* 화면 끝까지 붙는 한 덩어리 — 안쪽 여백과 버튼 테두리를 없애고
+     칸 사이 1px 틈만 남겨 구분합니다 */
   .mfoot{
     position:fixed; left:0; right:0; bottom:0; z-index:15;
     display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    padding:12px var(--gut) calc(14px + env(safe-area-inset-bottom));
-    background:#0E0A07; box-shadow:inset 0 1px 0 rgba(242,232,216,.1);
+    padding:0 0 env(safe-area-inset-bottom);
+    background:rgba(242,232,216,.13);
+    box-shadow:inset 0 1px 0 rgba(242,232,216,.13);
   }
   .mfoot__btn{
-    display:flex; align-items:center; justify-content:center; gap:6px;
-    height:54px; border-radius:0;             /* 각지게 */
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    height:56px; border:0; border-radius:0; box-shadow:none;
     background:var(--btn); color:var(--on-btn);
-    border:1px solid rgba(242,232,216,.2); box-shadow:none;
-    font-size:13.5px; font-weight:500; letter-spacing:.01em;
-    transition:background .2s var(--ease);
+    font-size:14px; font-weight:400; letter-spacing:.005em;
+    transition:background .18s var(--ease);
   }
-  .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.9; }
+  .mfoot__btn svg{ width:15px; height:15px; flex:none; opacity:.75; }
   .mfoot__btn:active{ background:var(--btn-d); }
 
   /* ── 메뉴 시트 ── */
@@ -609,7 +611,7 @@ h1.h2{ font-size:var(--t-h2); }
 @media (max-width:360px){
   :root{ --gut:18px; --t-h1:27px; --t-h2:27px; }
   .page[data-page=home] .phead h1{ font-size:28px; }
-  .mfoot__btn{ font-size:12.5px; gap:5px; }
-  .mfoot__btn svg{ width:12px; height:12px; }
+  .mfoot__btn{ font-size:13px; gap:6px; }
+  .mfoot__btn svg{ width:14px; height:14px; }
   .stats{ gap:10px; }
 }
