@@ -18,9 +18,11 @@
   --line:    rgba(243,233,219,.11);
   --line-2:  rgba(243,233,219,.18);
 
-  --beige:   #E3D3B6;               /* 강조 — 채워진 버튼·가격 */
+  --beige:   #E3D3B6;               /* 강조 — 가격 */
   --beige-d: #CFBB99;
   --on-beige:#241B12;
+  --btn:     #C2A97F;               /* 하단 버튼 — 베이지보다 한 단계 어둡게 */
+  --btn-d:   #AE9569;
 
   --serif: 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
   --sans:  'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
@@ -584,13 +586,13 @@ h1.h2{ font-size:var(--t-h2); }
   .mfoot__btn{
     display:flex; align-items:center; justify-content:center; gap:6px;
     height:54px; border-radius:0;             /* 각지게 */
-    background:var(--beige); color:var(--on-beige);
+    background:var(--btn); color:var(--on-beige);
     border:0; box-shadow:none;
     font-size:13.5px; font-weight:500; letter-spacing:.01em;
     transition:background .2s var(--ease);
   }
   .mfoot__btn svg{ width:14px; height:14px; flex:none; opacity:.9; }
-  .mfoot__btn:active{ background:var(--beige-d); }
+  .mfoot__btn:active{ background:var(--btn-d); }
 
   /* ── 메뉴 시트 ── */
   .sheet{
