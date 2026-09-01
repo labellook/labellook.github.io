@@ -62,7 +62,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 :focus-visible{ outline:2px solid var(--beige); outline-offset:3px; border-radius:2px; }
 
 /* 모바일/데스크톱 전용 조각 */
-.only-m,.tagline,.m-info,.mtop,.mfoot{ display:none; }
+.only-m,.tagline,.m-plans,.m-info,.mtop,.mfoot{ display:none; }
 
 /* ── 무대 ───────────────────────────────────────── */
 .stage{ position:relative; height:100vh; min-height:600px; overflow:hidden; background:var(--bg); }
@@ -212,6 +212,7 @@ h1.h2{ font-size:var(--t-h2); }
 .cost__list span{ font-size:var(--t-sm); font-weight:300; color:var(--fg-3); line-height:1.75; }
 
 .cost__note{ font-size:var(--t-sm); font-weight:300; line-height:1.85; color:var(--fg-3); }
+.m-info p{ color:var(--fg-3); }
 .cost__note b{ font-weight:400; color:var(--fg); }
 
 /* 상품 구성 — 실제로 무엇이 들어가는지 */
@@ -438,7 +439,7 @@ h1.h2{ font-size:var(--t-h2); }
   }
   .phead > *{ position:relative; z-index:1; }
   .phead h1{ line-height:1.4; }
-  .phead .lead{ margin-top:12px; font-size:var(--t-md); line-height:1.85; color:var(--fg-3); }
+  .phead .lead{ margin-top:12px; font-size:var(--t-md); line-height:1.85; color:var(--fg-2); }
 
   /* 데스크톱 배경과 같은 배정 — 화면마다 사진 하나씩 */
   .page[data-page=about]   .phead::before{ background-image:url(../img/ph-rose.jpg);    background-position:50% 56%; }
@@ -465,7 +466,7 @@ h1.h2{ font-size:var(--t-h2); }
   }
   .page[data-page=home] .phead h1{ font-size:33px; line-height:1.36; letter-spacing:-.022em;
                                    text-shadow:0 2px 30px rgba(22,16,11,.6); }
-  .page[data-page=home] .phead .lead{ margin-top:0; max-width:300px; color:rgba(243,233,219,.8); }
+  .page[data-page=home] .phead .lead{ margin-top:0; max-width:300px; }
   .tagline{ display:flex; align-items:center; gap:11px; font-size:10.5px; font-weight:300;
             letter-spacing:.1em; color:var(--fg); }
   .tagline i{ display:block; width:24px; height:1px; background:var(--beige); flex:none; }
@@ -493,12 +494,21 @@ h1.h2{ font-size:var(--t-h2); }
   .stats{ order:2; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
   .stats li{ gap:5px; padding-top:13px; border-top:1px solid rgba(243,233,219,.2); }
   .stats b{ font-family:var(--serif); font-size:17px; }
-  .stats span{ font-size:10.5px; line-height:1.5; color:var(--fg-4); }
+  .stats span{ font-size:11px; line-height:1.5; color:var(--fg-3); }
 
   .block{ order:0; display:flex; flex-direction:column; gap:10px; }
   .page[data-page=home] .lead{ order:1; margin-top:0; }
   .ser{ font-size:19px; line-height:1.62; }
   .foot{ display:none; }        /* 각주 — 위 문장과 내용이 겹쳐 모바일에서는 감춥니다 */
+
+  /* 홈 상품 요약 — 라벨 없이 이름·가격만 */
+  .m-plans{ order:3; display:flex; flex-direction:column; gap:0; }
+  .m-plan{ display:block; width:100%; padding:15px 0; background:none;
+           border:0; border-bottom:1px solid var(--line); border-radius:0; }
+  .m-plan__top{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
+  .m-plan__top b{ font-size:16px; font-weight:400; }
+  .m-plan__top em{ font-style:normal; font-family:var(--serif); font-size:19px;
+                   font-weight:400; white-space:nowrap; color:var(--beige); }
 
   .page[data-page=home] .steps{ order:4; padding-top:0; border:0; }
 
@@ -529,7 +539,7 @@ h1.h2{ font-size:var(--t-h2); }
   .plan__txt b{ display:block; font-size:20px; font-weight:400;
                 letter-spacing:-.012em; margin-bottom:8px; }
   .plan__txt .note{ display:block; font-size:var(--t-sm); line-height:1.9; color:var(--fg-3); }
-  .plan__spec{ margin-top:14px; font-size:12.5px; line-height:1.8; color:var(--fg-4); }
+  .plan__spec{ margin-top:14px; font-size:12.5px; line-height:1.8; color:var(--fg-3); }
   .plan__price{ display:block; margin-top:18px; padding-top:0; border:0;
                 font-size:29px; letter-spacing:.01em; }
 
@@ -548,7 +558,7 @@ h1.h2{ font-size:var(--t-h2); }
   .steps ol{ display:grid; grid-template-columns:1fr 1fr; gap:13px 14px; }
   .steps li{ display:flex; align-items:baseline; gap:9px; padding:0; border:0; }
   .steps i{ flex:none; font-style:normal; font-family:var(--serif);
-            font-size:12px; font-weight:400; color:var(--fg-4); }
+            font-size:12px; font-weight:400; color:var(--fg-3); }
 
   .steps span{ font-size:12.5px; font-weight:300; line-height:1.45; color:var(--fg-2); }
 
@@ -558,7 +568,7 @@ h1.h2{ font-size:var(--t-h2); }
   .ch__item svg{ width:20px; height:20px; }
   .ch__item b{ font-size:16px; }
   .ch__item b.tel{ font-size:21px; }
-  .ch__item small{ font-size:11.5px; color:var(--fg-4); margin-top:2px; }
+  .ch__item small{ font-size:12px; color:var(--fg-3); margin-top:2px; }
 
   /* ── 푸터 — 본문에서 떼어냅니다 ── */
   .m-info{ order:5;                     /* 홈에서 맨 마지막 (지표·메시지·상품·절차 다음) */
@@ -604,7 +614,7 @@ h1.h2{ font-size:var(--t-h2); }
   .sheet__nav button.is-active{ color:var(--beige); }
   .sheet__foot{ display:flex; flex-direction:column; gap:5px; }
   .sheet__foot a{ font-family:var(--serif); font-size:27px; letter-spacing:.01em; }
-  .sheet__foot .note{ font-size:12px; color:var(--fg-4); }
+  .sheet__foot .note{ font-size:12px; color:var(--fg-3); }
   body.is-locked{ overflow:hidden; }
 }
 
