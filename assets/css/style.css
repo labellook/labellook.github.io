@@ -508,7 +508,7 @@ h1.h2{ font-size:var(--t-h2); }
 
   .m-plans{ order:3; display:flex; flex-direction:column; gap:0; padding-top:0; border:0; }
   .page[data-page=home] .steps{ order:4; padding-top:0; border:0; }
-  .m-plans .eyebrow{ margin-bottom:10px; }
+  .m-plans .eyebrow{ display:none; }   /* 홈에서는 라벨 없이 목록만 */
 
   .m-plan__top{ flex:1; display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
   .m-plan__top b{ font-size:16px; font-weight:400; }
